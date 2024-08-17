@@ -58,8 +58,8 @@ export function login(email, password) {
     //   dispatch(setLoading(true));
   
       try {
-        // const response = await axios.post(' https://studynotion-thefinal.onrender.com/api/v1/auth/login', {
-        const response = await axios.post(' http://localhost:4000/api/v1/auth/login', {
+        // const response = await axios.post('https://studynotion-thefinal.onrender.com/api/v1/auth/login', {
+        const response = await axios.post('http://localhost:4000/api/v1/auth/login', {
           email,
           password
         }, {
@@ -82,7 +82,7 @@ export function login(email, password) {
             text1: 'Login Successful',
             text2: 'You have successfully logged in.',
           });
-          navigate('Profile');
+        //   navigate('Profile');
           // Optionally, dispatch action to set token in the store
           dispatch(setToken(token));
         } else {

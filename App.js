@@ -6,24 +6,20 @@ import rootReducer from './reducer/index';
 import { configureStore } from '@reduxjs/toolkit';
 import Toast from 'react-native-toast-message';
 import { NavigationContainer } from '@react-navigation/native';
-// import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
 export default function App() {
   const store = configureStore({
     reducer: rootReducer,
   });
-  const Stack = createStackNavigator();
+
   return (
+    
     <Provider store={store}>
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Profile" component={EnrolledCourses} />
-      </Stack.Navigator>
-      {/* Toast configuration */}
-      <Toast ref={(ref) => Toast.setRef(ref)} />
-    </NavigationContainer>
-  </Provider>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Open up App.js to start working on your app!</Text>
+        <Login />
+        {/* Toast configuration */}
+        <Toast ref={(ref) => Toast.setRef(ref)} />
+      </View>
+    </Provider>
   );
 }
