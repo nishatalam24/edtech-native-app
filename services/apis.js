@@ -1,4 +1,6 @@
-const BASE_URL = "http://localhost:4000/api/v1"
+import { REACT_APP_BASE_URL } from '@env';
+
+const BASE_URL = REACT_APP_BASE_URL
 
 
 export const endpoints = {

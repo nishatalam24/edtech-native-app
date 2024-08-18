@@ -1,11 +1,12 @@
 import { endpoints } from "../apis"
 import axios from 'axios';
 import {  setToken } from "../../slice/authslice"
-
+import { REACT_APP_BASE_URL } from '@env';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
 
+import { apiConnector } from "../apiConnector";
 
 const {
     LOGIN_API,
@@ -45,9 +46,9 @@ const {
 //     }
 //   }
 
+const apiUrl = REACT_APP_BASE_URL
 
-
-export function login(email, password) {
+export function login(email, password,navigation) {
     return async (dispatch) => {
       Toast.show({
         type: 'info',
@@ -58,13 +59,28 @@ export function login(email, password) {
     //   dispatch(setLoading(true));
   
       try {
-        // const response = await axios.post(' https://studynotion-thefinal.onrender.com/api/v1/auth/login', {
-        const response = await axios.post(' http://localhost:4000/api/v1/auth/login', {
+        // const response = await axios.post('https://studynotion-thefinal.onrender.com/api/v1/auth/login', {
+        // const response = await axios.post(`${REACT_APP_BASE_URL}/auth/login`, {
+        //   email,
+        //   password
+
+
+          
+        // }, 
+        
+
+
+
+        
+        // {
+        //   withCredentials: true, // Important to include cookies
+        // });
+
+        const response = await apiConnector("POST", LOGIN_API, {
           email,
-          password
-        }, {
-          withCredentials: true, // Important to include cookies
-        });
+          password,
+        })
+  
   
         console.log('Response Data:', JSON.stringify(response.data, null, 2));
         console.log('User Data:', JSON.stringify(response.data.user, null, 2));
@@ -82,9 +98,10 @@ export function login(email, password) {
             text1: 'Login Successful',
             text2: 'You have successfully logged in.',
           });
-          navigate('Profile');
+        //   navigate('Profile');
           // Optionally, dispatch action to set token in the store
           dispatch(setToken(token));
+          navigation.navigate('EnrolledCourses');
         } else {
           console.log('Token not found in response');
   
@@ -95,6 +112,10 @@ export function login(email, password) {
             text2: 'Token not found in response.',
           });
         }
+
+
+
+
       } catch (error) {
         if (error.response) {
           // The request was made and the server responded with a status code

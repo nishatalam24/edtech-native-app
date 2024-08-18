@@ -12,22 +12,31 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "UIBackgroundModes": ["audio"] // Allow background audio
+        "UIBackgroundModes": [
+          "audio"
+        ]
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "package": "com.yourapp.package",
+        "versionCode": 1,
+        "permissions": []
       },
       "permissions": [
         "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE" // Add if necessary for accessing media
+        "WRITE_EXTERNAL_STORAGE"
       ]
-    }
-    ,
+    },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f8d243d8-3bb7-4bfd-9412-8f8230872372"
+      }
     }
   }
 }

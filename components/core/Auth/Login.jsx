@@ -10,11 +10,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { login } from "../../../services/Operations/authAPI"
 // import {REACT_APP_BASE_URL} from '@env'
 // import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 const Login = () => {
 
+
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   // const { token } = useSelector((state) => state.auth);
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // const dispatch = useDispatch();
@@ -23,7 +25,7 @@ const Login = () => {
     //   console.log('Email:', emailLower);
     //   console.log('Password:', passwordLower);
     // //   e.preventDefault()
-      dispatch(login(email, password))
+      dispatch(login(email, password,navigation))
     //   // Add more submit logic here, such as calling an API
     //   const email = emailLower.toLowerCase();
     //   const password = passwordLower.toLowerCase();
