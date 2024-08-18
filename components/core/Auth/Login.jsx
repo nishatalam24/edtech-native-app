@@ -22,55 +22,9 @@ const Login = () => {
     // const dispatch = useDispatch();
 
     const handleSubmit = async () => {
-    //   console.log('Email:', emailLower);
-    //   console.log('Password:', passwordLower);
-    // //   e.preventDefault()
+   
       dispatch(login(email, password,navigation))
-    //   // Add more submit logic here, such as calling an API
-    //   const email = emailLower.toLowerCase();
-    //   const password = passwordLower.toLowerCase();
-
-      // dispatch(login(email, password))
-      // try {
-      //   // const response = await axios.post('https://studynotion-thefinal.onrender.com/api/v1/auth/login', {
-      //   const response = await axios.post('http://localhost:4000/api/v1/auth/login', {
-      //     email,
-      //     password
-      //   }, {
-      //     withCredentials: true, // Important to include cookies
-      //   });
   
-      //   console.log('Response Data:', JSON.stringify(response.data,null,2));
-      //   console.log('User Data:', JSON.stringify(response.data.user, null, 2));
-
-
-
-      //   if (response.data && response.data.token) {
-      //     const token = response.data.token;
-  
-      //     // Save the token to AsyncStorage
-      //     await AsyncStorage.setItem('token', token);
-          
-      //     console.log('Token saved to AsyncStorage:', token);
-      //   } else {
-      //     console.log('Token not found in response');
-      //   }
-
-      // } catch (error) {
-      //   if (error.response) {
-      //     // The request was made and the server responded with a status code
-      //     // that falls out of the range of 2xx
-      //     console.error('Error Response Data:', error.response.data);
-      //     console.error('Error Response Status:', error.response.status);
-      //     console.error('Error Response Headers:', error.response.headers);
-      //   } else if (error.request) {
-      //     // The request was made but no response was received
-      //     console.error('Error Request Data:', error.request);
-      //   } else {
-      //     // Something happened in setting up the request that triggered an Error
-      //     console.error('Error Message:', error.message);
-      //   }
-      // }
     }
   
 

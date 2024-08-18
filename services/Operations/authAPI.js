@@ -57,7 +57,7 @@ export function login(email, password,navigation) {
   
       console.log(email,password)
     //   dispatch(setLoading(true));
-  
+  console.log("data passed")
       try {
         // const response = await axios.post('https://studynotion-thefinal.onrender.com/api/v1/auth/login', {
         // const response = await axios.post(`${REACT_APP_BASE_URL}/auth/login`, {

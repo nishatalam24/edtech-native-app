@@ -20,23 +20,20 @@ dispatch(setToken(null))
   }
 
   return (
-    <View className="h-screen w-screen flex items-center justify-center pt-[100px]">
+    <View className="">
       {/* <Text className="text-[100px]">EnrolledCourses</Text> */}
 
       {token ? (
           <>
 
-          {/* <Text className="bg-red-500 text-lg">hello</Text> */}
             <Text className="text-[10px] text-red-700 pt-2">Hello woldd</Text>
-            {/* Other authenticated screens can go here */}
           </>
         ) : (
           <>
 <Text className>Token nahi hai</Text>
-            {/* Other non-authenticated screens can go here */}
           </>
         )}
-            <Text className=" text-red-700 ">Hello woldd</Text>
+            <Text className=" text-red-500 ">Hello woldd from enrolled</Text>
 <Button title="Submit" onPress={handleSubmit} />
 
     </View>

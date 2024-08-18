@@ -9,8 +9,9 @@ import rootReducer from './reducer/index';
 import { setToken } from './slice/authslice';
 import Login from './components/core/Auth/Login';
 import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Testcomponent from './components/core/Auth/Testcomponent';
 
 function AppNavigator() {
   const { token } = useSelector((state) => state.auth);
@@ -43,7 +44,7 @@ function AppNavigator() {
 
 <Text className="text-[20px] text-red-700 pt-[20px]">Hello wolds</Text>
       
-      {/* <Stack.Navigator initialRouteName={token ? 'Enrolled Courses' : 'Login'}>
+      <Stack.Navigator initialRouteName={token ? 'Enrolled Courses' : 'Login'}>
 
 
         {token ? (<>
@@ -54,15 +55,14 @@ function AppNavigator() {
           <Stack.Screen name="Login" component={Login} />
           
         )}
-      </Stack.Navigator> */}
+      </Stack.Navigator>
 
-      {/* Toast configuration */}
-      <Tab.Navigator>
-        <Tab.Screen name="EnrolledCourses" component={EnrolledCourses} />
-        <Tab.Screen name="Login" component={Login} />
-      </Tab.Navigator>
+    
 
       <Toast />
+
+
+
     </NavigationContainer>
   );
 }
