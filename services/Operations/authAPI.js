@@ -1,7 +1,7 @@
 import { endpoints } from "../apis"
 import axios from 'axios';
 import {  setToken } from "../../slice/authslice"
-import { REACT_APP_BASE_URL } from '@env';
+// import { REACT_APP_BASE_URL } from '@env';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
@@ -46,7 +46,7 @@ const {
 //     }
 //   }
 
-const apiUrl = REACT_APP_BASE_URL
+// const apiUrl = REACT_APP_BASE_URL
 
 export function login(email, password,navigation) {
     return async (dispatch) => {

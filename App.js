@@ -1,60 +1,77 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import Login from './components/core/Auth/Login';
-import { Provider } from 'react-redux';
-import rootReducer from './reducer/index';
+import React, { useEffect } from 'react';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import Toast from 'react-native-toast-message';
 import { NavigationContainer } from '@react-navigation/native';
-// import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useSelector } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
+import rootReducer from './reducer/index';
+import { setToken } from './slice/authslice';
+import Login from './components/core/Auth/Login';
 import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
+import { Text } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-function AppNavigator()  {
+function AppNavigator() {
   const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  // let token =true;
-  
+  useEffect(() => {
+    // Function to fetch the token from AsyncStorage
+    const fetchToken = async () => {
+      try {
+        const token = await AsyncStorage.getItem('token');
+        if (token) {
+          console.log('Token from AsyncStorage:', token);
+          dispatch(setToken(JSON.parse(token)));
+        } else {
+          console.log('No token found in AsyncStorage.');
+        }
+      } catch (error) {
+        console.error('Failed to retrieve token from AsyncStorage:', error);
+      }
+    };
+
+    fetchToken();
+  }, [dispatch]);
+
   const Stack = createStackNavigator();
-  // const { token } = useSelector((state) => state.auth);
+  const Tab = createBottomTabNavigator();
+
   return (
     <NavigationContainer>
-      {/* <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="EnrolledCourses" component={EnrolledCourses} />
+
+<Text className="text-[20px] text-red-700 pt-[20px]">Hello wolds</Text>
+      
+      {/* <Stack.Navigator initialRouteName={token ? 'Enrolled Courses' : 'Login'}>
+
+
+        {token ? (<>
+          <Stack.Screen name="EnrolledCourses" component={EnrolledCourses} />
+        </>
+
+        ) : (
+          <Stack.Screen name="Login" component={Login} />
+          
+        )}
       </Stack.Navigator> */}
 
-<Stack.Screen name="EnrolledCourses" component={EnrolledCourses} />
-{token ? (
-          <>
-
-          {/* <Text className="bg-red-500 text-lg">hello</Text> */}
-            <Text className="text-[100px] text-red-700 pt-2">Hello wolr</Text>
-            {/* <EnrolledCourses/> */}
-            {/* Other authenticated screens can go here */}
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Login" component={Login} />
-            <Login/>
-            {/* Other non-authenticated screens can go here */}
-          </>
-        )}
-
-
-
       {/* Toast configuration */}
-      {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
+      <Tab.Navigator>
+        <Tab.Screen name="EnrolledCourses" component={EnrolledCourses} />
+        <Tab.Screen name="Login" component={Login} />
+      </Tab.Navigator>
+
+      <Toast />
     </NavigationContainer>
   );
 }
-
 
 export default function App() {
   const store = configureStore({
     reducer: rootReducer,
   });
+
   return (
     <Provider store={store}>
       <AppNavigator />
